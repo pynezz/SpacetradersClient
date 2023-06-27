@@ -18,7 +18,7 @@ export const actions = {
                 path: '/'
             });
 
-            throw redirect(303, '/welcome');
+            throw redirect(303, '/dashboard');
         }
 
         return fail(403, {
