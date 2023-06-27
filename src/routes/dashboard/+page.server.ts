@@ -1,8 +1,8 @@
 import type { Agent } from '$lib/types';
 import { API_KEY } from '$env/static/private';
-import { agentStore, setAgent } from '$lib/stores/customStores';
-import { writable } from "svelte/store";
+import { setAgent } from '$lib/stores/customStores';
 
+const endpoint = 'https://api.spacetraders.io/v2/my/';
 
 const options = {
 	headers: {
@@ -22,19 +22,31 @@ export const load = async () => {
 		startingFaction: "faction",
 	}
 
+	let retObject = {
+		agent: {} as any,
+		contracts: {} as any,
+	};
+
 	console.log("load function in dashboard called")
-    let res = await fetch('https://api.spacetraders.io/v2/my/agent', options).then(async response =>{
+
+	// retObject.agent = res;
+	retObject.agent = get('agent');
+	retObject.contracts = get('contracts');
+
+	setAgent(retObject.agent);
+
+	return retObject;
+}
+
+const get = async (catalog: string) => {
+	let res = await fetch(endpoint + catalog, options).then(async response => {
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 		let obj = await response.json(); // read response body and parse as JSON
-		// console.log("obj.data: ", obj.data)
-		let agent: Agent = obj.data;
+		console.log("Data: ", obj)
 
-		console.log("Agent: ", agent)
-		setAgent(agent);
-
-		return agent;
+		return obj.data;
 	})
 
 	return res;

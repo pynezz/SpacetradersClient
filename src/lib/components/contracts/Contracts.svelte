@@ -1,5 +1,8 @@
 <script lang="ts">
+
     export let contracts: Array<any> = [];
+
+
 </script>
 
 <div class="flex">
