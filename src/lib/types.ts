@@ -111,12 +111,41 @@ export interface Faction {
     isRecruiting: boolean;
 }
 
+
+/**
+ *  {
+	"id": "cljed32qi1trys60crn7a0p25",
+	"factionSymbol": "COSMIC",
+	"type": "PROCUREMENT",
+	"terms": {
+		"deadline": "2023-07-04T14:06:55.332Z",
+		"payment": {
+			"onAccepted": 175398,
+			"onFulfilled": 1174404
+		},
+		"deliver": [
+			{
+				"tradeSymbol": "ALUMINUM_ORE",
+				"destinationSymbol": "X1-YU85-03282C",
+				"unitsRequired": 9300,
+				"unitsFulfilled": 0
+			}
+		]
+	},
+	"accepted": false,
+	"fulfilled": false,
+	"expiration": "2023-06-28T14:06:55.332Z",
+	"deadlineToAccept": "2023-06-28T14:06:55.332Z"
+}
+
+ */
+
 export interface Contract {
     id: string;
     factionSymbol: string;
     type: string;
     terms: {
-        deadline: string;
+        deadline: Date;
         payment: {
             onAccepted: number;
             onFulfilled: number;
@@ -130,6 +159,6 @@ export interface Contract {
     },
     accepted: boolean;
     fulfilled: boolean;
-    expiration: string;
-    deadlineToAccept: string;
+    expiration: Date;
+    deadlineToAccept: Date;
 }

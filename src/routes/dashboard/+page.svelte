@@ -20,7 +20,7 @@
     <AgentCard title={$agentData?.symbol} headquarters={$agentData?.headquarters} credits={$agentData?.credits} startingFaction={$agentData.startingFaction} />
 </div>
 
-<div id="contracts" class="flex flex-col w-full">
+<div id="contracts" class="w-full">
     {#if data.contracts.length === 0}
         <p class="text-lg text-neutral-100">No contracts available</p>
     {:else}

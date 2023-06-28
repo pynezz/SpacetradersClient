@@ -6,9 +6,9 @@ import "../app.css";
 <!-- <div class="bg-yellow-400/60"> -->
   <Nav />
 
-  <main class="flex flex-col m-2">
-
+  <main class="m-2">
     <slot />
+
   </main>
 <!-- </div> -->
 
