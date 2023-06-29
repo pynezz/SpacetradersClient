@@ -1,3 +1,4 @@
+// src/routes/dashboard/+page.server.ts
 import type { Agent } from '$lib/types';
 import { API_KEY } from '$env/static/private';
 import { setAgent } from '$lib/stores/customStores';
@@ -23,8 +24,8 @@ export const load = async () => {
 	}
 
 	let retObject = {
-		agent: {} as any,
-		contracts: {} as any,
+		agent: {} as any, 		// Agent
+		contracts: {} as any, 	// Contract[]
 	};
 
 	console.log("load function in dashboard called")
@@ -33,9 +34,9 @@ export const load = async () => {
 	retObject.agent = get('agent');
 	retObject.contracts = get('contracts');
 
-	setAgent(retObject.agent);
+	setAgent(retObject.agent);	// Set the agent in the store
 
-	return retObject;
+	return retObject;			// Return the agent and contracts, because the setAgent doesn't work..
 }
 
 const get = async (catalog: string) => {

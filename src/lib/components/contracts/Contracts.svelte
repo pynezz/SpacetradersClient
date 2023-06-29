@@ -1,25 +1,59 @@
 <script lang="ts">
     import type { Contract } from "$lib/types";
+	import { onDestroy, onMount } from "svelte";
+    import { createEventDispatcher } from "svelte";
+
+
+    export const csr = true;
 
     const contractSymbol = {
         "Procurement": "⛏️",
         "Recon": "🔭",
 
     }
+    // let followTip: any;
 
+
+    // onMount(() => {
+    //     followTip = document.getElementById('follow-tip');
+
+    //     var mousemoveHandler = (e: MouseEvent) => {
+    //         followTip.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+    //     };
+
+    //     window.addEventListener('mousemove', mousemoveHandler);
+
+    //     onDestroy(() => {
+    //         window.removeEventListener('mousemove', mousemoveHandler);
+    //         console.log('removed mousemove listener');
+    //     })
+    // })
     export let contracts: Array<Contract> = [];
+
+    export const acceptedContract = (id: string) => {
+        contracts = contracts.filter(contract => contract.id !== id);
+        return contracts;
+    }
+
+    const dispatch = createEventDispatcher();
+
+    const acceptContract = (id: string) => {
+        console.log('accepting contract', id);
+        dispatch('contractAccepted', id);
+    }
 
     let tooltip = { text: '', groupName: '' };
 
     const showToolTip = (groupName: string, text: string | Date) => {
         tooltip = { text: text as string, groupName };
+        // followTip.classList.add('')
     }
 
     const hideTooltip = () => {
         tooltip = { text: '', groupName: '' };
     }
 
-    $: hoverClass = `absolute z-50 p-1 -right-1 -top-1/3 bg-cyan-900/40 text-neutral-50 px-2 text-xs rounded-sm backdrop-blur-md opacity-0 delay-500 transition duration-200 ease-in-out`;
+    $: hoverClass = `{translate} absolute z-50 p-1 -right-1 -top-1/3 bg-cyan-900/40 text-neutral-50 px-2 text-xs rounded-sm backdrop-blur-md opacity-0 delay-500 transition duration-200 ease-in-out`;
 
     $: timeleft = (deadline: Date) => {
         const now = new Date();
@@ -35,18 +69,22 @@
     }
 
 
+
 </script>
 <div class="group w-full h-full">
     {#each contracts as contract (contract.id)}
-        <div class="card p-2 w-fit border-2 border-dotted border-gray-600/50 rounded-sm">
+        <div class="card p-2 w-fit border-2 border-dotted border-gray-600/50 rounded-sm translate[">
             <div class="flex flex-row space-x-2 items-center justify-between">
                 <p class="text-md text-neutral-50">{contract.type}</p>
                 <p class="text-xs text-neutral-500">{contract.id}</p>
             </div>
 
             <div class="border rounded-md p-2 m-1 mx-2 text-neutral-100 text-sm">
-                ⏳ {timeleft(contract.deadlineToAccept)}
+                <!-- <p class="text-neutral-200 text-sm">{contractSymbol['contract.type']}</p> -->
+                <p class="text-neutral-500 pb-1 pl-1 text-xs">{contract.accepted ? 'Deadline to fulfill' : 'Offer runs out in'}</p>
+                ⏳ {timeleft(contract.accepted ? contract.deadlineToAccept : contract.deadlineToAccept)}
             </div>
+
 
             <div class="pl-2 border-l border-l-neutral-500 pointer-events-auto">
                 <h3 class="text-md text-neutral-200 font-light underline">Terms</h3>
@@ -74,10 +112,12 @@
                         >
                         Payment upfront: {contract.terms.payment.onAccepted.toLocaleString('nb-NO')},-
                     </p>
-
-                    <div class={`${hoverClass} group-hover/accepted:opacity-90`}>
+<!-- class={`${hoverClass} group-hover/accepted:opacity-90`} -->
+                    <!-- {#if (tooltip.groupName === 'accepted')} -->
+                    <div id="follow-tip" style="backgrond: white;" class={`${hoverClass} group-hover/accepted:opacity-90`} >
                         {contract.terms.payment.onAccepted}
                     </div>
+                    <!-- {/if} -->
                 </div>
 
                 <div class="relative group/fulfilled">
@@ -114,9 +154,18 @@
                 </div>
 
             </div>
-                <button type="button" class="py-1 my-2 w-full bg-teal-600/10 backdrop-blur-sm duration-200 text-neutral-100 hover:bg-teal-800/50 border rounded-sm border-teal-400/80 outline-2 focus:outline-cyan-500">
-                    ACCEPT
-                </button>
+            {#if (contract.accepted === true && contract.fulfilled === false)}
+            <button type="button" class="py-1 my-2 w-full bg-teal-600/10 backdrop-blur-sm duration-200 text-neutral-100
+                    hover:bg-teal-800/50 border rounded-sm border-teal-400/80 outline-2 focus:outline-cyan-500">
+                🤝
+            </button>
+            {:else if (contract.accepted === false)}
+            <button type="button" on:click={() => acceptContract(contract.id)} class="py-1 my-2 w-full bg-teal-600/10 backdrop-blur-sm duration-200 text-neutral-100
+                    hover:bg-teal-800/50 border rounded-sm border-teal-400/80 outline-2 focus:outline-cyan-500">
+                ACCEPT
+            </button>
+            {/if}
+
         </div>
     {/each}
 </div>

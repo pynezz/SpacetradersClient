@@ -161,4 +161,6 @@ export interface Contract {
     fulfilled: boolean;
     expiration: Date;
     deadlineToAccept: Date;
+
+    accept: () => void;
 }
