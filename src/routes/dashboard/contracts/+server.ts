@@ -12,6 +12,7 @@ const options = {
 };
 
 // Accept a contract
+// Could generalize this more, but as of now (2023-07-02) there is only one method on this API endpoint
 export const POST: RequestHandler = ( async ({ request }) => {
     const contractId = request.headers.get('contractId');
     // console.log("POST PARAMS: ", params);
@@ -34,4 +35,5 @@ export const POST: RequestHandler = ( async ({ request }) => {
     return new Response(JSON.stringify(data), {
         status: 200,
     });
+
 }) satisfies RequestHandler;

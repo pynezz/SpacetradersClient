@@ -10,7 +10,7 @@ export const load = (async ({cookies}) => {
 }) satisfies PageServerLoad;
 
 export const actions = {
-    default: async ({ request, cookies }) => {
+    default: async ({ request: request, cookies: cookies }) => {
         const data = await request.formData();
 
         if (data.get('passphrase') === PASSPHRASE) {

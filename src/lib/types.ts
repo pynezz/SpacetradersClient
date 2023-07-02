@@ -164,3 +164,254 @@ export interface Contract {
 
     accept: () => void;
 }
+
+
+/**
+ * {
+
+"data"
+:
+
+{
+
+"systemSymbol"
+:
+
+"X1-YU85"
+,
+
+"symbol"
+:
+
+"X1-YU85-99640B"
+,
+
+"type"
+:
+
+"PLANET"
+,
+
+"x"
+:
+
+-12
+,
+
+"y"
+:
+
+25
+,
+
+"orbitals"
+:
+
+[
+
+{
+
+"symbol"
+:
+
+"X1-YU85-03282C"
+
+}
+,
+
+{
+
+"symbol"
+:
+
+"X1-YU85-87273F"
+
+}
+,
+
+{
+
+"symbol"
+:
+
+"X1-YU85-81074E"
+
+}
+
+]
+,
+
+"traits"
+:
+
+[
+
+{
+
+"symbol"
+:
+
+"OVERCROWDED"
+,
+
+"name"
+:
+
+"Overcrowded"
+,
+
+"description"
+:
+
+"A waypoint teeming with inhabitants, leading to cramped living conditions and a high demand for resources."
+
+}
+,
+
+{
+
+"symbol"
+:
+
+"HIGH_TECH"
+,
+
+"name"
+:
+
+"High-Tech"
+,
+
+"description"
+:
+
+"A center of innovation and cutting-edge technology, driving progress and attracting skilled individuals from around the galaxy."
+
+}
+,
+
+{
+
+"symbol"
+:
+
+"BUREAUCRATIC"
+,
+
+"name"
+:
+
+"Bureaucratic"
+,
+
+"description"
+:
+
+"A waypoint governed by complex regulations, red tape, and layers of administration, often leading to inefficiencies and frustration."
+
+}
+,
+
+{
+
+"symbol"
+:
+
+"TEMPERATE"
+,
+
+"name"
+:
+
+"Temperate"
+,
+
+"description"
+:
+
+"A world with a mild climate and balanced ecosystem, providing a comfortable environment for a variety of life forms and supporting diverse industries."
+
+}
+,
+
+{
+
+"symbol"
+:
+
+"MARKETPLACE"
+,
+
+"name"
+:
+
+"Marketplace"
+,
+
+"description"
+:
+
+"A thriving center of commerce where traders from across the galaxy gather to buy, sell, and exchange goods."
+
+}
+
+]
+,
+
+"chart"
+:
+
+{
+
+"submittedBy"
+:
+
+"COSMIC"
+,
+
+"submittedOn"
+:
+
+"2023-06-24T05:11:22.020Z"
+
+}
+,
+
+"faction"
+:
+
+{
+
+"symbol"
+:
+
+"COSMIC"
+
+}
+
+}
+}
+ */
+
+export interface Waypoint {
+    systemSymbol: string;
+    symbol: string;
+    type: string;
+    x: number;
+    y: number;
+
+    orbitals: {
+        symbol: string;
+    }[];
+
+    traits: Trait[];
+
+    chart: {
+        submittedBy: string;
+        submittedOn: Date;
+    };
+
+    faction: {
+        symbol: string;
+    };
+}

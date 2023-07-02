@@ -1,26 +1,19 @@
 <script lang="ts">
-	//   import {currentUser, pb} from "$lib/pocketbaseClient";
 	import { goto } from '$app/navigation';
 	import { writable } from 'svelte/store';
 	import { authStore } from '$lib/stores/customStores';
 
 	let menuVisible = writable(false);
 
-	authStore.subscribe(( value: any ) => {
-        if (value) {
-            console.log("Authentication: ", value);
-            authStore.set(value);
-	}});
-
 	const toggleMenu = () => {
 		$menuVisible = !$menuVisible;
 	};
 
 	const logOut = () => {
-		// pb.authStore.clear();
 		authStore.set(false);
-		goto('/dashboard');
+		goto('/');
 	};
+
 
 	const btn = 'flex flex-col-reverse justify-center items-center h-20 font-mono hover:scale-105 focus:scale-105 hover:font-black hover:cursor-pointer focus:font-black focus:cursor-pointer text-white transition-all ease-in-out delay-10';
 </script>

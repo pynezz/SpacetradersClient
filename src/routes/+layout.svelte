@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { waypointStore } from '$lib/stores/customStores';
   import Nav from "$lib/components/nav/Nav.svelte";
-import "../app.css";
+  import "../app.css";
+
+  // export let waypointData;
 </script>
 
 <!-- <div class="bg-yellow-400/60"> -->

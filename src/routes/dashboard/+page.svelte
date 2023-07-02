@@ -1,22 +1,19 @@
 <!-- src/routes/dashboard/+page.svelte -->
 <script lang="ts">
-	// import { agent } from '$lib/agent';
     import { agentStore } from "$lib/stores/customStores";
-    import type { Agent } from "$lib/types";
+    import type { Waypoint, Agent } from "$lib/types";
 	import { onDestroy, onMount } from "svelte";
 	import { writable } from "svelte/store";
     import Contracts from "$lib/components/contracts/Contracts.svelte";
     import AgentCard from "$lib/components/Cards/AgentCard.svelte";
-    import { slide } from 'svelte/transition';
 
-    import { post } from "./acceptContract";
 	import Accordion from "$lib/components/accordion/Accordion.svelte";
 	import AccordionItem from "$lib/components/accordion/AccordionItem.svelte";
+	import Dashnav from "$lib/components/dashnav/Dashnav.svelte";
 
     const dashboardMenuItems = [
 		{ title: 'Agent', content: '', index: 0 },
 		{ title: 'Contracts', content: Contracts, index: 1 },
-		// { title: 'Meldinger', content: '' }
 	];
 
     // Display stuff based on the chosen menu item
@@ -34,9 +31,13 @@
 	};
 
     let agentData = writable<Agent>(data.agent);
+    let waypointData = writable<Waypoint>(data.wayPoint);
+
+
 
     onDestroy(() => {
         agentStore.set({} as Agent);
+        waypointData.set({} as Waypoint);
     });
 
     const handleAcceptContract = async (e: any) => {
@@ -107,3 +108,4 @@
 
 
 </div>
+<Dashnav waypoint={data.wayPoint} />
