@@ -10,21 +10,21 @@ This is a client for the SpaceTraders API. It is written in SvelteKit, TailwindC
 ## Quick start / Todo
 1. [ ] Create a new SpaceTraders account/token
 > *in Spacetraders, you have a JSON Web Token (JWT) that you use to authenticate your requests*
-2. [ ] View contracts
+2. [x] ✅ View contracts
 > *contracts/quests/missions are a way to earn credits, etc*
-3. [ ] Accept contract
+3. [x] ✅ Accept contract
 4. [ ] View ships
 > *to finish the contract, you need to buy a ship*
 5. [ ] Buy ship
 
 ## Development
-1. [x] Register a new SpaceTraders account/token
-2. [x] Create a new SvelteKit project
-3. [x] Add TailwindCSS
-4. [x] Create a dashboard
+1. [x] ✅ Register a new SpaceTraders account/token
+2. [x] ✅ Create a new SvelteKit project
+3. [x] ✅ Add TailwindCSS
+4. [x] ✅ Create a dashboard
 
 ## Quickstart guide
-1. [ ] Create a new agent
+1. [ ] ✅ Create a new agent
 2. [ ] First mission
 3. [ ] Buy a ship
     - [ ] Find a shipyard
@@ -42,12 +42,12 @@ This is a client for the SpaceTraders API. It is written in SvelteKit, TailwindC
 
 
 ### Management
-- [x] Register a new SpaceTraders account/token
+- [x] ✅ Register a new SpaceTraders account/token
 - [ ] Switch accounts
 
 ### Contracts
-- [x] [GET] View contracts
-- [x] [POST] Accept contracts
+- [x] ✅ [GET] View contracts
+- [x] ✅ [POST] Accept contracts
 - [ ] [POST] Deliver cargo to contract
 - [ ] [POST] Fulfill contract
 
@@ -80,10 +80,11 @@ This is a client for the SpaceTraders API. It is written in SvelteKit, TailwindC
 
 ### Meta
 - [ ] Show items
+- [x] ✅ Show current location
+- [x] ✅ Show credit balance
 
 
-
-
+---
 
 # create-svelte
 
